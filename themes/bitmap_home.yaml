@@ -1,0 +1,299 @@
+# Bitmap Home: an 8-bit theme for Home Assistant with light and dark mode in one theme.
+#
+# Cards become dialogue windows with a pixel frame, the night sky behind them is a field of pixel stars
+# (dark) or pixel clouds (light), all text is set in a monospace font, and nothing has rounded corners.
+#
+# Works without any add-on: colours, the double pixel frame around cards, badges and dialogs, square
+# controls and the starry background come from plain theme variables. With card-mod 4.x installed
+# (optional), the card-mod-* keys add the pixel touches a theme variable cannot reach: a ▶ cursor in front
+# of switched-on tiles and the selected sidebar entry, block bars on tile sliders (opt-in per tile),
+# notched pixel corners and upper-case headings. Without card-mod those keys are ignored.
+#
+# Fonts: system monospace fonts only, nothing is downloaded. If you place a pixel font yourself (see the
+# README) under the family name "Bitmap Home Pixel", it takes over; otherwise the system monospace is used.
+Bitmap Home:
+  card-mod-theme: Bitmap Home
+
+  # Theme-own variables, used below and by the card-mod rules
+  bitmap-frame: "#ece3c4"
+  bitmap-window: "#131b3e"
+  bitmap-page: "#0b1230"
+  bitmap-cursor: "#f1ecdc"
+
+  # Core colours: night navy, a cream frame, a bright pixel blue for actions
+  primary-color: "#5aaeff"
+  accent-color: "#5aaeff"
+  text-primary-color: "#0b1230"
+  text-accent-color: "#0b1230"
+  primary-text-color: "#f1ecdc"
+  secondary-text-color: "#aab3d8"
+  disabled-text-color: "#7880a8"
+  disabled-color: "#4b5585"
+  divider-color: "#2c3870"
+  # Newer frontends colour buttons, switches and tabs from these scales instead of primary-color
+  ha-color-primary-05: "#04112e"
+  ha-color-primary-10: "#08204f"
+  ha-color-primary-20: "#0f3577"
+  ha-color-primary-30: "#164a9e"
+  ha-color-primary-40: "#1d5bd6"
+  ha-color-primary-50: "#3a84f5"
+  ha-color-primary-60: "#5aaeff"
+  ha-color-primary-70: "#86c2ff"
+  ha-color-primary-80: "#b2d6ff"
+  ha-color-primary-90: "#d8eaff"
+  ha-color-primary-95: "#ecf4ff"
+  # Neutral scale tinted towards navy, so settings and dialogs keep the same night colour
+  ha-color-neutral-05: "#0d1330"
+  ha-color-neutral-10: "#161d3d"
+  ha-color-neutral-20: "#262f55"
+  ha-color-neutral-30: "#384270"
+  ha-color-neutral-40: "#4b5585"
+  ha-color-neutral-50: "#66709c"
+  ha-color-neutral-60: "#8790b6"
+  ha-color-neutral-70: "#a4accc"
+  ha-color-neutral-80: "#c3c9e0"
+  ha-color-neutral-90: "#e0e4f0"
+  ha-color-neutral-95: "#f0f2f8"
+
+  # Backgrounds: a starfield behind dashboards, plain navy for settings and editors
+  primary-background-color: "#0e1534"
+  secondary-background-color: "#141c40"
+  lovelace-background: >-
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' shape-rendering='crispEdges' fill='%23ece3c4'%3E%3Crect x='12' y='18' width='2' height='2' opacity='1'/%3E%3Crect x='94' y='9' width='2' height='2' opacity='0.55'/%3E%3Crect x='140' y='52' width='2' height='2' opacity='0.8'/%3E%3Crect x='58' y='71' width='2' height='2' opacity='0.45'/%3E%3Crect x='23' y='118' width='2' height='2' opacity='0.7'/%3E%3Crect x='111' y='133' width='2' height='2' opacity='0.5'/%3E%3Cpath d='M70 32h2v2h2v2h-2v2h-2v-2h-2v-2h2z'/%3E%3C/svg%3E") 0 0 / 160px 160px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='230' height='230' shape-rendering='crispEdges' fill='%23ece3c4'%3E%3Crect x='40' y='30' width='2' height='2' opacity='0.4'/%3E%3Crect x='180' y='90' width='2' height='2' opacity='0.6'/%3E%3Crect x='120' y='200' width='2' height='2' opacity='0.35'/%3E%3Cpath d='M200 158h2v2h2v2h-2v2h-2v-2h-2v-2h2z'/%3E%3Crect x='8' y='170' width='2' height='2' opacity='0.5'/%3E%3C/svg%3E") 37px 71px / 230px 230px,
+    #0b1230
+
+  # Cards as dialogue windows: a 3px frame, a 2px gap in the window colour, then a 1px inner line.
+  # Plain box-shadow, so it works without card-mod and also frames badges.
+  card-background-color: "var(--bitmap-window)"
+  ha-card-background: "var(--bitmap-window)"
+  ha-card-border-color: "var(--bitmap-frame)"
+  ha-card-border-width: "3px"
+  ha-card-border-radius: "0px"
+  ha-card-box-shadow: "inset 0 0 0 2px var(--bitmap-window), inset 0 0 0 3px var(--bitmap-frame)"
+  ha-badge-border-radius: "0px"
+  ha-card-header-font-family: "var(--ha-font-family-heading)"
+
+  # No round corners anywhere: pixels are square
+  ha-border-radius-sm: "0px"
+  ha-border-radius-md: "0px"
+  ha-border-radius-lg: "0px"
+  ha-border-radius-xl: "0px"
+  ha-border-radius-2xl: "0px"
+  ha-border-radius-3xl: "0px"
+  ha-border-radius-4xl: "0px"
+  ha-border-radius-5xl: "0px"
+  ha-border-radius-6xl: "0px"
+  ha-border-radius-pill: "0px"
+  ha-border-radius-circle: "0px"
+  ha-tile-icon-border-radius: "0px"
+  ha-picture-border-radius: "0px"
+  ha-card-features-border-radius: "0px"
+  control-slider-border-radius: "0px"
+  wa-border-radius-s: "0px"
+  wa-border-radius-m: "0px"
+  wa-border-radius-l: "0px"
+  wa-border-radius-pill: "0px"
+  wa-form-control-border-radius: "0px"
+  wa-panel-border-radius: "0px"
+  # Hard pixel shadows instead of soft blur
+  ha-box-shadow-s: "2px 2px 0 rgba(0,0,0,.45)"
+  ha-box-shadow-m: "3px 3px 0 rgba(0,0,0,.45)"
+  ha-box-shadow-l: "4px 4px 0 rgba(0,0,0,.45)"
+  wa-shadow-s: "2px 2px 0 rgba(0,0,0,.45)"
+  wa-shadow-m: "3px 3px 0 rgba(0,0,0,.45)"
+  wa-shadow-l: "4px 4px 0 rgba(0,0,0,.45)"
+
+  # Dialogs: the same window frame, drawn outside the surface
+  ha-dialog-border-radius: "0px"
+  ha-dialog-surface-background: "#18224a"
+  mdc-theme-surface: "#18224a"
+  dialog-box-shadow: "0 0 0 3px var(--bitmap-frame), 0 0 0 6px var(--bitmap-page), 6px 6px 0 6px rgba(0,0,0,.5)"
+  ha-dialog-scrim-backdrop-filter: "none"
+  mdc-dialog-scrim-color: "rgba(4,8,24,.72)"
+
+  # Header and sidebar
+  app-header-background-color: "#0b1230"
+  app-header-text-color: "#f1ecdc"
+  app-header-border-bottom: "3px solid var(--bitmap-frame)"
+  sidebar-background-color: "#0b1230"
+  sidebar-text-color: "#f1ecdc"
+  sidebar-icon-color: "#aab3d8"
+  sidebar-selected-text-color: "#f1ecdc"
+  sidebar-selected-icon-color: "#5aaeff"
+  sidebar-menu-button-text-color: "#f1ecdc"
+  scrollbar-thumb-color: "#384270"
+
+  # Inputs and forms
+  input-fill-color: "#0e1534"
+  input-ink-color: "var(--primary-text-color)"
+  input-label-ink-color: "var(--secondary-text-color)"
+  input-idle-line-color: "#6f79a8"
+  input-hover-line-color: "var(--primary-color)"
+  input-outlined-idle-border-color: "#6f79a8"
+  input-outlined-hover-border-color: "var(--primary-color)"
+  mdc-text-field-fill-color: "#0e1534"
+  mdc-select-fill-color: "#0e1534"
+  ha-color-form-background: "#0e1534"
+  code-editor-background-color: "#0e1534"
+  markdown-code-background-color: "#0e1534"
+  clear-background-color: "#18224a"
+  switch-checked-button-color: "var(--primary-color)"
+  switch-checked-track-color: "var(--primary-color)"
+  switch-unchecked-button-color: "#aab3d8"
+  switch-unchecked-track-color: "#384270"
+
+  # Typography: one monospace stack for everything, like a character ROM
+  ha-font-family-body: "'Bitmap Home Pixel', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace"
+  ha-font-family-heading: "'Bitmap Home Pixel', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace"
+  ha-font-family-longform: "'Bitmap Home Pixel', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace"
+  ha-font-family-code: "ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
+  code-font-family: "ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
+  ha-font-weight-medium: "600"
+  ha-font-weight-bold: "700"
+
+  # A small palette like an old console: lights yellow, safety green, alarms red, media purple
+  success-color: "#63d86a"
+  warning-color: "#ff9a4d"
+  error-color: "#ff6b6b"
+  info-color: "#5aaeff"
+  amber-color: "#ffd447"
+  yellow-color: "#ffd447"
+  orange-color: "#ff9a4d"
+  deep-orange-color: "#ff8a5c"
+  red-color: "#ff6b6b"
+  green-color: "#63d86a"
+  light-green-color: "#9be37a"
+  teal-color: "#4fd6cf"
+  cyan-color: "#4fd6cf"
+  blue-color: "#5aaeff"
+  light-blue-color: "#86c2ff"
+  indigo-color: "#8d8cff"
+  purple-color: "#b593ff"
+  deep-purple-color: "#b593ff"
+  pink-color: "#ff8ad1"
+  grey-color: "#8a93bd"
+  state-icon-color: "#aab3d8"
+  state-inactive-color: "#8a93bd"
+
+  # Optional, card-mod 4.x. Tiles of switchable entities that are on get a ▶ cursor in front of the icon.
+  # The domain list matters: the tile card marks any entity with a value as active, sensors included.
+  # Tiles with the class bitmap-blocks (card_mod: class: bitmap-blocks) get their first feature row, a slider,
+  # cut into ten blocks. Opt-in, because the same mask would cut button rows apart.
+  card-mod-card: |
+    ha-card {
+      clip-path: polygon(0 3px, 3px 3px, 3px 0, calc(100% - 3px) 0, calc(100% - 3px) 3px, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 100%, 3px 100%, 3px calc(100% - 3px), 0 calc(100% - 3px));
+    }
+    .card-header, .content.title {
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    ha-card:has(ha-tile-container[focused]) {
+      outline: 2px solid var(--primary-color);
+      outline-offset: -8px;
+    }
+    ha-tile-icon { margin-inline-start: 10px; }
+    ha-card.active ha-tile-icon:is([data-domain=light], [data-domain=switch], [data-domain=fan], [data-domain=media_player], [data-domain=climate], [data-domain=input_boolean], [data-domain=humidifier], [data-domain=water_heater], [data-domain=vacuum], [data-domain=remote], [data-domain=siren], [data-domain=automation], [data-domain=script], [data-domain=cover])::before {
+      content: "▶";
+      position: absolute;
+      inset-inline-start: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      line-height: 1;
+      color: var(--bitmap-cursor);
+    }
+    :host(.bitmap-blocks) hui-card-features {
+      -webkit-mask: repeating-linear-gradient(90deg, #000 0 calc(10% - 4px), transparent calc(10% - 4px) 10%) 0 0 / 100% var(--feature-height) no-repeat content-box, linear-gradient(transparent var(--feature-height), #000 var(--feature-height)) border-box;
+      mask: repeating-linear-gradient(90deg, #000 0 calc(10% - 4px), transparent calc(10% - 4px) 10%) 0 0 / 100% var(--feature-height) no-repeat content-box, linear-gradient(transparent var(--feature-height), #000 var(--feature-height)) border-box;
+    }
+  # Optional, card-mod 4.x: the sidebar becomes the menu window with a cursor on the selected entry
+  card-mod-sidebar: |
+    :host {
+      border-inline-end: 3px solid var(--bitmap-frame);
+      font-family: var(--ha-font-family-body);
+    }
+    ha-list-item-button.selected::after {
+      content: "▶";
+      position: absolute;
+      inset-inline-start: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      color: var(--bitmap-cursor);
+    }
+
+  modes:
+    dark: {}
+    light:
+      bitmap-frame: "#1a2350"
+      bitmap-window: "#fbfcff"
+      bitmap-page: "#cfe0f7"
+      bitmap-cursor: "#131a3b"
+      primary-color: "#1d5bd6"
+      accent-color: "#1d5bd6"
+      text-primary-color: "#ffffff"
+      text-accent-color: "#ffffff"
+      primary-text-color: "#131a3b"
+      secondary-text-color: "#4a5480"
+      disabled-text-color: "#7d86ac"
+      disabled-color: "#a4accc"
+      divider-color: "#c7cee6"
+      primary-background-color: "#e7edf8"
+      secondary-background-color: "#dde5f3"
+      # Daylight: pale sky with a few pixel clouds
+      lovelace-background: >-
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='240' shape-rendering='crispEdges' fill='%23ffffff' opacity='.55'%3E%3Cpath d='M38 40h16v4h8v4h8v8h-48v-8h8v-4h8z'/%3E%3Cpath d='M208 150h16v4h8v4h8v8h-48v-8h8v-4h8z'/%3E%3Crect x='150' y='60' width='2' height='2'/%3E%3Crect x='270' y='30' width='2' height='2'/%3E%3Crect x='90' y='190' width='2' height='2'/%3E%3C/svg%3E") 0 0 / 320px 240px,
+        #cfe0f7
+      ha-dialog-surface-background: "#fbfcff"
+      mdc-theme-surface: "#fbfcff"
+      mdc-dialog-scrim-color: "rgba(19,26,59,.45)"
+      dialog-box-shadow: "0 0 0 3px var(--bitmap-frame), 0 0 0 6px var(--bitmap-window), 6px 6px 0 6px rgba(19,26,59,.25)"
+      ha-box-shadow-s: "2px 2px 0 rgba(19,26,59,.25)"
+      ha-box-shadow-m: "3px 3px 0 rgba(19,26,59,.25)"
+      ha-box-shadow-l: "4px 4px 0 rgba(19,26,59,.25)"
+      wa-shadow-s: "2px 2px 0 rgba(19,26,59,.25)"
+      wa-shadow-m: "3px 3px 0 rgba(19,26,59,.25)"
+      wa-shadow-l: "4px 4px 0 rgba(19,26,59,.25)"
+      app-header-background-color: "#fbfcff"
+      app-header-text-color: "#131a3b"
+      sidebar-background-color: "#fbfcff"
+      sidebar-text-color: "#131a3b"
+      sidebar-icon-color: "#4a5480"
+      sidebar-selected-text-color: "#131a3b"
+      sidebar-selected-icon-color: "#1d5bd6"
+      sidebar-menu-button-text-color: "#131a3b"
+      scrollbar-thumb-color: "#a4accc"
+      input-fill-color: "#eef2fa"
+      input-idle-line-color: "#7d86ac"
+      input-outlined-idle-border-color: "#7d86ac"
+      mdc-text-field-fill-color: "#eef2fa"
+      mdc-select-fill-color: "#eef2fa"
+      ha-color-form-background: "#eef2fa"
+      code-editor-background-color: "#eef2fa"
+      markdown-code-background-color: "#eef2fa"
+      clear-background-color: "#fbfcff"
+      switch-unchecked-button-color: "#4a5480"
+      switch-unchecked-track-color: "#c7cee6"
+      success-color: "#1e8538"
+      warning-color: "#b95100"
+      error-color: "#c62832"
+      info-color: "#1d5bd6"
+      amber-color: "#a66b00"
+      yellow-color: "#a66b00"
+      orange-color: "#b95100"
+      deep-orange-color: "#b8461c"
+      red-color: "#c62832"
+      green-color: "#1e8538"
+      light-green-color: "#3f7f1f"
+      teal-color: "#0b7d85"
+      cyan-color: "#0b7d85"
+      blue-color: "#1d5bd6"
+      light-blue-color: "#2a6fb8"
+      indigo-color: "#4b4bc9"
+      purple-color: "#7446d4"
+      deep-purple-color: "#7446d4"
+      pink-color: "#b42a83"
+      grey-color: "#6b7499"
+      state-icon-color: "#4a5480"
+      state-inactive-color: "#6b7499"
