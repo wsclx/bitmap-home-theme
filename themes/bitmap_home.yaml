@@ -65,14 +65,15 @@ Bitmap Home:
 
   # Cards as dialogue windows: a 3px frame, a 2px gap in the window colour, then a 1px inner line.
   # Plain box-shadow, so it works without card-mod and also frames badges.
-  card-background-color: "var(--bitmap-window)"
-  ha-card-background: "var(--bitmap-window)"
+  card-background-color: "#131b3e"
+  ha-card-background: "#131b3e"
   ha-card-border-color: "var(--bitmap-frame)"
   ha-card-border-width: "3px"
   ha-card-border-radius: "0px"
   ha-card-box-shadow: "inset 0 0 0 2px var(--bitmap-window), inset 0 0 0 3px var(--bitmap-frame)"
   ha-badge-border-radius: "0px"
   ha-card-header-font-family: "var(--ha-font-family-heading)"
+  ha-card-header-font-size: "20px"
 
   # No round corners anywhere: pixels are square
   ha-border-radius-sm: "0px"
@@ -145,13 +146,13 @@ Bitmap Home:
 
   # Typography: one monospace stack for everything, like a character ROM
   ha-font-family-body: "'Bitmap Home Pixel', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace"
-  ha-font-family-heading: "'Bitmap Home Pixel', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace"
+  ha-font-family-heading: "'Bitmap Home Pixel Titles', 'Bitmap Home Pixel', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace"
   ha-font-family-longform: "'Bitmap Home Pixel', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace"
   ha-font-family-code: "ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
   code-font-family: "ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
   ha-font-weight-medium: "600"
   ha-font-weight-bold: "700"
-  # Type like a character set: small (12), normal (16), titles (20), double (24), 32/40/48 only for big numbers.
+  # Type like a character set: small (12), normal (16), titles (20), double (24), 28/40/48 only for big numbers.
   # Every size and line sits on a 4px grid (16px text on 24px lines, 12px on 18px lines).
   ha-font-size-xs: "12px"
   ha-font-size-s: "12px"
@@ -159,7 +160,7 @@ Bitmap Home:
   ha-font-size-l: "16px"
   ha-font-size-xl: "20px"
   ha-font-size-2xl: "24px"
-  ha-font-size-3xl: "32px"
+  ha-font-size-3xl: "28px"
   ha-font-size-4xl: "40px"
   ha-font-size-5xl: "48px"
   ha-line-height-condensed: "1.25"
@@ -225,8 +226,10 @@ Bitmap Home:
       outline-offset: -8px;
     }
     ha-tile-icon { margin-inline-start: 10px; }
-    ha-tile-icon:not(:hover) { --tile-icon-opacity: 0; }
-    hui-card-features { --feature-height: 32px; --feature-button-spacing: 8px; }
+    hui-card-features { --feature-button-spacing: 8px; }
+    :host(hui-thermostat-card) .title { text-transform: uppercase; letter-spacing: .06em; }
+    .temp-attribute { flex-shrink: 0; }
+    .temp-attribute .temp { margin-right: 1.2em !important; }
     ha-card.active ha-tile-icon:is([data-domain=light], [data-domain=switch], [data-domain=fan], [data-domain=media_player], [data-domain=climate], [data-domain=input_boolean], [data-domain=humidifier], [data-domain=water_heater], [data-domain=vacuum], [data-domain=remote], [data-domain=siren], [data-domain=automation], [data-domain=script], [data-domain=cover])::before {
       content: "▶";
       position: absolute;
@@ -240,7 +243,11 @@ Bitmap Home:
     :host(.bitmap-blocks) hui-card-features {
       -webkit-mask: repeating-linear-gradient(90deg, #000 0 calc(10% - 4px), transparent calc(10% - 4px) 10%) 0 0 / 100% var(--feature-height) no-repeat content-box, linear-gradient(transparent var(--feature-height), #000 var(--feature-height)) border-box;
       mask: repeating-linear-gradient(90deg, #000 0 calc(10% - 4px), transparent calc(10% - 4px) 10%) 0 0 / 100% var(--feature-height) no-repeat content-box, linear-gradient(transparent var(--feature-height), #000 var(--feature-height)) border-box;
+      background: linear-gradient(var(--input-idle-line-color), var(--input-idle-line-color)) 0 0 / 100% var(--feature-height) no-repeat content-box;
     }
+  # Optional, card-mod 4.x: the more-info dialog uses the theme font too
+  card-mod-more-info: |
+    :host { font-family: var(--ha-font-family-body); }
   # Optional, card-mod 4.x: the sidebar becomes the menu window with a cursor on the selected entry
   card-mod-sidebar: |
     :host {
@@ -250,10 +257,10 @@ Bitmap Home:
     ha-list-item-button.selected::after {
       content: "▶";
       position: absolute;
-      inset-inline-start: 4px;
+      inset-inline-start: 2px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 10px;
+      font-size: 12px;
       color: var(--bitmap-cursor);
     }
 
@@ -262,6 +269,8 @@ Bitmap Home:
     light:
       bitmap-frame: "#1a2350"
       bitmap-window: "#fbfcff"
+      card-background-color: "#fbfcff"
+      ha-card-background: "#fbfcff"
       bitmap-page: "#cfe0f7"
       bitmap-cursor: "#131a3b"
       primary-color: "#1d5bd6"
@@ -331,7 +340,7 @@ Bitmap Home:
       grey-color: "#6b7499"
       state-icon-color: "#4a5480"
       state-inactive-color: "#6b7499"
-      weather-icon-sun-color: "#f2b200"
+      weather-icon-sun-color: "#b88300"
       weather-icon-moon-color: "#4a5480"
       weather-icon-cloud-front-color: "#c7cee6"
       weather-icon-cloud-back-color: "#7d86ac"

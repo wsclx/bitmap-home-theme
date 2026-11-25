@@ -5,6 +5,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), ver
 
 ## [Unreleased]
 
+### Fixed
+- Weather card: "°C" is no longer cut off at the right edge (big numbers 28 px instead of 32 px, and the station name gives way first; card-mod).
+- Block bars: the empty blocks are now clearly visible (opaque track in the field line colour), so you can read the full range.
+- Light mode: the weather sun is darker (3:1 against the card) and stays visible.
+- Card titles are 20 px and no longer larger than section titles; the thermostat title is in capitals like the other card titles (card-mod).
+- Card colour is set as a hex value, so the frontend can derive `rgb-card-background-color`.
+- Sidebar cursor is 12 px instead of 10 px (card-mod).
+
+### Changed
+- Tile features are 42 px high again (Home Assistant default) instead of 32 px, for easier tapping on phones.
+- Tile icons keep their coloured plate, so the icon is recognisable as its own button on touch screens.
+- The more-info dialog uses the theme font (card-mod).
+- Titles try a separate optional font slot first (`Bitmap Home Pixel Titles`); the README now suggests a pixel font for titles only and explains why.
+
+### Docs
+- README: font slots, known limits for the dialog font, keyboard focus without card-mod and half-filled blocks.
+
 ## [1.1.0] - 2026-11-25
 
 ### Changed

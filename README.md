@@ -16,7 +16,7 @@ An 8-bit theme for Home Assistant: cards become dialogue windows with a pixel fr
 
 - **One theme, two modes.** Night (navy with cream frames and pixel stars) and day (pale sky with navy frames and pixel clouds). It follows the light or dark setting of your profile or device.
 - **Dialogue windows.** Cards, badges and dialogs get a double pixel frame. No rounded corners anywhere, hard pixel shadows instead of soft ones.
-- **Monospace everywhere.** One system monospace stack for all text (SF Mono, Cascadia Mono, Menlo, Consolas, DejaVu Sans Mono …). Nothing is downloaded. You can add a pixel font yourself, see below.
+- **Monospace text.** One system monospace stack for dashboards, settings and the sidebar (SF Mono, Cascadia Mono, Menlo, Consolas, DejaVu Sans Mono …); with card-mod the sidebar and the more-info dialog use it too. Nothing is downloaded. You can add a pixel font for titles yourself, see below.
 - **A small console palette.** Lights yellow, safety green, alarms red, media purple, actions in a bright pixel blue. Text meets WCAG contrast (4.5:1) in both modes.
 - **Optional extras with card-mod:** a ▶ cursor in front of tiles that are on and in front of the selected sidebar entry, slider bars cut into ten blocks (per tile, see below), notched pixel corners, headings in capitals, a clearer keyboard focus on tiles.
 
@@ -24,13 +24,16 @@ An 8-bit theme for Home Assistant: cards become dialogue windows with a pixel fr
 
 Without card-mod the theme still works: frames, colours, square corners, the starry background and the monospace font come from plain theme variables. Sliders stay solid bars, the sidebar keeps the default font.
 
-![Without card-mod: frames and stars stay, sliders are solid bars](https://raw.githubusercontent.com/wsclx/bitmap-home-theme/main/images/dashboard-dark-desktop-no-cardmod.png)
+| Without card-mod, dark | Without card-mod, light |
+|---|---|
+| ![Without card-mod, dark: frames and stars stay, sliders are solid bars](https://raw.githubusercontent.com/wsclx/bitmap-home-theme/main/images/dashboard-dark-desktop-no-cardmod.png) | ![Without card-mod, light](https://raw.githubusercontent.com/wsclx/bitmap-home-theme/main/images/dashboard-light-desktop-no-cardmod.png) |
 
 Settings and dialogs use the same windows:
 
 | Settings | Dialog |
 |---|---|
 | ![Settings in dark mode](https://raw.githubusercontent.com/wsclx/bitmap-home-theme/main/images/settings-dark-desktop.png) | ![More-info dialog in light mode](https://raw.githubusercontent.com/wsclx/bitmap-home-theme/main/images/more-info-light-desktop.png) |
+| ![Settings in light mode](https://raw.githubusercontent.com/wsclx/bitmap-home-theme/main/images/settings-light-desktop.png) | ![More-info dialog in dark mode](https://raw.githubusercontent.com/wsclx/bitmap-home-theme/main/images/more-info-dark-desktop.png) |
 
 ## Requirements
 
@@ -93,25 +96,31 @@ card_mod:
 
 This works for any slider feature: brightness, colour temperature, cover position, volume, fan speed as a slider.
 
-## Optional: a pixel font
+## Optional: a pixel font for titles
 
-The theme names the font family **Bitmap Home Pixel** first in its font stack. If a font with that name is available, the whole interface uses it; otherwise the system monospace font is used. The theme itself loads nothing from the internet, so you place the font yourself:
+The theme has two optional font slots. If a font with that family name is available, it is used; otherwise the system monospace font is. The theme itself loads nothing from the internet, so you place the font yourself.
 
-1. Pick a pixel font under a free licence, for example [Pixelify Sans](https://github.com/google/fonts/tree/main/ofl/pixelifysans) (SIL Open Font License, upper and lower case, easy to read) or [Silkscreen](https://github.com/google/fonts/tree/main/ofl/silkscreen) (SIL Open Font License, capitals only, best for short labels).
-2. Copy the font file into `www/fonts/` inside your configuration folder, for example `www/fonts/PixelifySans.ttf`. Keep the licence file next to it.
-3. Create `www/fonts/bitmap-home-font.css`:
+| Family name | Used for | Suggestion |
+|---|---|---|
+| **Bitmap Home Pixel Titles** | Section and card titles | [Silkscreen](https://github.com/google/fonts/tree/main/ofl/silkscreen) (SIL Open Font License), capitals only, crisp at 16 and 24 px |
+| **Bitmap Home Pixel** | All text | Only if you want everything in pixels. Pixel fonts need 16 px or more; this theme sets small text to 12 px, and many pixel fonts draw capital C and G almost closed. |
+
+1. Copy the font file into `www/fonts/` inside your configuration folder, for example `www/fonts/Silkscreen-Regular.ttf`. Keep the licence file (`OFL.txt`) next to it.
+2. Create `www/fonts/bitmap-home-font.css`:
 
    ```css
    @font-face {
-     font-family: "Bitmap Home Pixel";
-     src: url("/local/fonts/PixelifySans.ttf") format("truetype");
+     font-family: "Bitmap Home Pixel Titles";
+     src: url("/local/fonts/Silkscreen-Regular.ttf") format("truetype");
      font-display: swap;
    }
    ```
 
-4. Add it as a dashboard resource: **Settings → Dashboards → ⋮ → Resources → Add resource**, URL `/local/fonts/bitmap-home-font.css`, type *Stylesheet*. Reload the page.
+3. Add it as a dashboard resource: **Settings → Dashboards → ⋮ → Resources → Add resource**, URL `/local/fonts/bitmap-home-font.css`, type *Stylesheet*. Reload the page.
 
-Dashboard resources load when a dashboard opens, so settings pages show the pixel font only after you have opened a dashboard once. Pixel fonts are harder to read in long lists; if that bothers you, remove the resource and the theme falls back to the system monospace.
+Dashboard resources load when a dashboard opens, so settings pages show the font only after you have opened a dashboard once. Remove the resource and the theme falls back to the system monospace.
+
+If you want the whole interface in pixels, icons included, have a look at the sister theme [Overworld](https://github.com/wsclx/overworld-theme).
 
 ## Customise
 
@@ -125,14 +134,16 @@ Change these variables in a copy of the theme, or override them with card-mod.
 | `lovelace-background` | Starfield (dark) and clouds (light) behind dashboards, as small inline SVG images |
 | `ha-card-box-shadow` | Draws the inner line of the double frame; set it to `none` for a single frame |
 | `primary-color`, `ha-color-primary-*` | Action colour and the blue scale the frontend uses for buttons and switches |
-| `ha-font-family-body`, `ha-font-family-heading` | Font stacks |
+| `ha-font-family-body`, `ha-font-family-heading` | Font stacks (titles try *Bitmap Home Pixel Titles* first) |
 
 ## Known limits
 
 - Icons stay the regular Material Design Icons; the theme cannot replace them with pixel icons. The same goes for the weather icons and the round thermostat dial.
 - Toggle switches keep their rounded shape: their radius is fixed inside the frontend and not exposed as a variable.
 - Block bars only exist where Home Assistant draws a slider. Battery levels and other sensor values stay numbers.
-- Without card-mod, the sidebar uses the default font, because the frontend sets it outside the theme variables.
+- Without card-mod, the sidebar and the more-info dialog use the default font, because the frontend sets it outside the theme variables.
+- Without card-mod, keyboard focus on tiles is faint in light mode (only the frame changes colour). With card-mod a blue ring marks it.
+- In block bars the slider handle can sit inside a block, so one block may look half filled.
 - Home Assistant does not guarantee theme variables between releases. The card-mod rules target internal elements of the frontend and can break with an update; the theme itself keeps working. If something looks off, please open an issue with your version.
 
 ## Contributing
