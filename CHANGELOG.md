@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), ver
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-11-25
+
 ### Fixed
 - Weather card: "°C" is no longer cut off at the right edge (big numbers 28 px instead of 32 px, and the station name gives way first; card-mod).
 - Block bars: the empty blocks are now clearly visible (opaque track in the field line colour), so you can read the full range.
