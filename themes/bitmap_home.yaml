@@ -151,6 +151,22 @@ Bitmap Home:
   code-font-family: "ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
   ha-font-weight-medium: "600"
   ha-font-weight-bold: "700"
+  # Type like a character set: small (12), normal (16), titles (20), double (24), 32/40/48 only for big numbers.
+  # Every size and line sits on a 4px grid (16px text on 24px lines, 12px on 18px lines).
+  ha-font-size-xs: "12px"
+  ha-font-size-s: "12px"
+  ha-font-size-m: "16px"
+  ha-font-size-l: "16px"
+  ha-font-size-xl: "20px"
+  ha-font-size-2xl: "24px"
+  ha-font-size-3xl: "32px"
+  ha-font-size-4xl: "40px"
+  ha-font-size-5xl: "48px"
+  ha-line-height-condensed: "1.25"
+  ha-line-height-normal: "1.5"
+  # Windows need a little air between their frames
+  ha-section-grid-row-gap: "12px"
+  ha-section-grid-column-gap: "12px"
 
   # A small palette like an old console: lights yellow, safety green, alarms red, media purple
   success-color: "#63d86a"
@@ -175,6 +191,22 @@ Bitmap Home:
   grey-color: "#8a93bd"
   state-icon-color: "#aab3d8"
   state-inactive-color: "#8a93bd"
+  # Twelve-colour palette for states: covers green like an open window, media purple, fans and vacuums teal
+  state-cover-active-color: "var(--light-green-color)"
+  state-media_player-active-color: "var(--purple-color)"
+  state-climate-heat-color: "var(--orange-color)"
+  state-climate-heat-cool-color: "var(--amber-color)"
+  state-weather-cloudy-color: "var(--grey-color)"
+  state-weather-partlycloudy-color: "var(--grey-color)"
+  state-weather-lightning_rainy-color: "var(--amber-color)"
+  state-weather-snowy-color: "var(--light-blue-color)"
+  # Weather icons in the palette: yellow sun, cream clouds over blue-grey, blue rain
+  weather-icon-sun-color: "#ffd447"
+  weather-icon-moon-color: "#ece3c4"
+  weather-icon-cloud-front-color: "#ece3c4"
+  weather-icon-cloud-back-color: "#8a93bd"
+  weather-icon-rain-color: "#5aaeff"
+  weather-icon-snow-color: "#f1ecdc"
 
   # Optional, card-mod 4.x. Tiles of switchable entities that are on get a ▶ cursor in front of the icon.
   # The domain list matters: the tile card marks any entity with a value as active, sensors included.
@@ -193,6 +225,8 @@ Bitmap Home:
       outline-offset: -8px;
     }
     ha-tile-icon { margin-inline-start: 10px; }
+    ha-tile-icon:not(:hover) { --tile-icon-opacity: 0; }
+    hui-card-features { --feature-height: 32px; --feature-button-spacing: 8px; }
     ha-card.active ha-tile-icon:is([data-domain=light], [data-domain=switch], [data-domain=fan], [data-domain=media_player], [data-domain=climate], [data-domain=input_boolean], [data-domain=humidifier], [data-domain=water_heater], [data-domain=vacuum], [data-domain=remote], [data-domain=siren], [data-domain=automation], [data-domain=script], [data-domain=cover])::before {
       content: "▶";
       position: absolute;
@@ -297,3 +331,9 @@ Bitmap Home:
       grey-color: "#6b7499"
       state-icon-color: "#4a5480"
       state-inactive-color: "#6b7499"
+      weather-icon-sun-color: "#f2b200"
+      weather-icon-moon-color: "#4a5480"
+      weather-icon-cloud-front-color: "#c7cee6"
+      weather-icon-cloud-back-color: "#7d86ac"
+      weather-icon-rain-color: "#1d5bd6"
+      weather-icon-snow-color: "#7d86ac"
